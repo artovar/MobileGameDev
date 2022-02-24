@@ -24,12 +24,12 @@ public class GestureIdentifierScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.touchCount > 0)
-        {
-            tap_timer += Time.deltaTime;
-            Touch[] all_touches = Input.touches;
-            Touch first_touch = all_touches[0];
 
+        tap_timer += Time.deltaTime;
+        Touch[] all_touches = Input.touches;
+        if (Input.touchCount >= 1)
+        {
+            Touch first_touch = all_touches[0];
 
             switch (first_touch.phase)
             {
@@ -67,40 +67,43 @@ public class GestureIdentifierScript : MonoBehaviour
             }
 
 
-            if (Input.touchCount > 1)
+
+
+
+
+        }
+        if (Input.touchCount >= 2)
+        {
+            Touch first_touch = all_touches[0];
+            Touch second_touch = all_touches[1];
+
+            switch (second_touch.phase)
             {
-                Touch second_touch = all_touches[1];
 
-                switch (second_touch.phase)
-                {
+                case TouchPhase.Began:
+                    second_has_moved = true;
+                    foreach (ITouchController manager in managers)
+                    {
+                        manager.findInteractableObject(second_touch.position);
+                    }
+                    break;
 
-                    case TouchPhase.Began:
-                        second_has_moved = true;
-                        break;
+                case TouchPhase.Stationary:
+                    break;
+                case TouchPhase.Moved:
+                    second_has_moved = true;
+                    foreach (ITouchController manager in managers)
+                    {
+                        print("Im pinchin");
+                        manager.pinch(first_touch.position, second_touch.position);
+                    }
 
-                    case TouchPhase.Stationary:
-                        break;
-                    case TouchPhase.Moved:
-                        second_has_moved = true;
-                        foreach (ITouchController manager in managers)
-                        {
-                            print("Im pinchin");
-                            manager.pinch(first_touch.position, second_touch.position);
-                        }
+                    break;
+                case TouchPhase.Ended:
+                    second_has_moved = false;
+                    break;
 
-                        break;
-                    case TouchPhase.Ended:
-                        second_has_moved = false;
-                        break;
-
-                }
             }
-
-
-
-
-
-
         }
     }
 

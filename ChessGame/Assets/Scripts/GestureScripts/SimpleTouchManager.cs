@@ -86,10 +86,11 @@ public class SimpleTouchManager : MonoBehaviour, ITouchController
 
 
         IInteractable interactable = null;
+        print(objectFound);
 
-        if (selectedObject == null && objectFound)
+        if (selectedObject != null && objectFound)
         {
-
+            print("Yepa");
             interactable = selectedObject.GetComponent<IInteractable>();
 
             Ray first_ray = Camera.main.ScreenPointToRay(first_touch);

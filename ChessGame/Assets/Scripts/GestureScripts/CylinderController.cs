@@ -40,12 +40,13 @@ public class CylinderController : InteractableObject, IInteractable
 
     public void pinch(Ray our_ray, Ray second_ray)
     {
-        Debug.DrawRay(our_ray.origin, Vector3.forward, Color.red);
-        Debug.DrawRay(second_ray.origin, Vector3.forward, Color.green);
+        Debug.DrawRay(our_ray.origin, Vector3.forward * 50, Color.red);
+        Debug.DrawRay(second_ray.origin, Vector3.forward * 50, Color.green);
 
-        
+        print("Huevo");
         if (pinch_started)
         {
+            print("Frito");
             actual_distance = Vector3.Distance(our_ray.origin, second_ray.origin);
 
             transform.localScale = initial_scale * (actual_distance / initial_distance);
@@ -55,7 +56,7 @@ public class CylinderController : InteractableObject, IInteractable
         {
             initial_distance = Vector3.Distance(our_ray.origin, second_ray.origin);
             initial_scale = transform.localScale;
-            pinch_started = false;
+            pinch_started = true;
         }
     }
 

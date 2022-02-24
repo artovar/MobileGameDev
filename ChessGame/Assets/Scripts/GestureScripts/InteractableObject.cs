@@ -5,7 +5,7 @@ using UnityEngine;
 public class InteractableObject : MonoBehaviour
 {
     public bool isSelected = false;
-    public Renderer myRenderer;
+    protected Renderer myRenderer;
 
     public bool drag_started = false;
     public float distance;
