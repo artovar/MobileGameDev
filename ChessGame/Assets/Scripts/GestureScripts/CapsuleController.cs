@@ -58,5 +58,6 @@ public class CapsuleController : InteractableObject, IInteractable
 
 
     public void pinch(Ray our_ray, Ray second_ray) { }
+    public void pinch_ended() { }
 
 }

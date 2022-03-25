@@ -11,5 +11,7 @@ public interface ITouchController
 
     public void pinch(Vector2 first_touch, Vector2 second_touch);
 
+    public void pinch_ended();
+
     public void findInteractableObject(Vector2 position);
 }

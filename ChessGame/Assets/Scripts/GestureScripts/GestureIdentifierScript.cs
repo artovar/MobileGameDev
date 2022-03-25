@@ -66,11 +66,6 @@ public class GestureIdentifierScript : MonoBehaviour
 
             }
 
-
-
-
-
-
         }
         if (Input.touchCount >= 2)
         {
@@ -89,7 +84,6 @@ public class GestureIdentifierScript : MonoBehaviour
                     break;
 
                 case TouchPhase.Stationary:
-                    break;
                 case TouchPhase.Moved:
                     second_has_moved = true;
                     foreach (ITouchController manager in managers)
@@ -101,6 +95,12 @@ public class GestureIdentifierScript : MonoBehaviour
                     break;
                 case TouchPhase.Ended:
                     second_has_moved = false;
+                    foreach (ITouchController manager in managers)
+                    {
+                        print("Im pinchin");
+                        manager.pinch_ended();
+                    }
+
                     break;
 
             }

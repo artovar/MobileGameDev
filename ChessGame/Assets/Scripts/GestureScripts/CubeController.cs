@@ -43,4 +43,5 @@ public class CubeController : InteractableObject, IInteractable
         print("Im a madafucking cube");
     }
     public void pinch(Ray our_ray, Ray second_ray) { }
+    public void pinch_ended() { }
 }

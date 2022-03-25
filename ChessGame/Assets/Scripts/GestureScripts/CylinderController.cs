@@ -7,8 +7,13 @@ public class CylinderController : InteractableObject, IInteractable
     private bool pinch_started = false;
     private float initial_distance;
     private float actual_distance;
+    private float actual_angle;
 
     private Vector3 initial_scale;
+    private Quaternion initial_angle;
+
+    private Vector3 initial_vector;
+    private Vector3 actual_vector;
 
     public void selectToggle()
     {
@@ -46,19 +51,31 @@ public class CylinderController : InteractableObject, IInteractable
         print("Huevo");
         if (pinch_started)
         {
-            print("Frito");
-            actual_distance = Vector3.Distance(our_ray.origin, second_ray.origin);
 
+            actual_vector = (our_ray.origin - second_ray.origin);
+            actual_angle = Vector3.Angle(actual_vector, initial_vector);
+            print(actual_angle);
+            transform.localRotation = initial_angle * Quaternion.AngleAxis((-actual_angle), Camera.main.transform.forward);
+
+
+            actual_distance = Vector3.Distance(our_ray.origin, second_ray.origin);
             transform.localScale = initial_scale * (actual_distance / initial_distance);
-            print(transform.localScale);
+
         }
         else
         {
+            initial_vector = our_ray.origin - second_ray.origin;
+            initial_angle = transform.rotation;
+
             initial_distance = Vector3.Distance(our_ray.origin, second_ray.origin);
-            initial_scale = transform.localScale;
+            initial_scale = transform.lossyScale;
+            initial_angle = transform.rotation;
             pinch_started = true;
         }
     }
 
-
+    public void pinch_ended()
+    {
+        pinch_started = false;
+    }
 }

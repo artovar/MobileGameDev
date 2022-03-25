@@ -75,7 +75,7 @@ public class SimpleTouchManager : MonoBehaviour, ITouchController
         }
         else
         {
-            objectFound = false;
+            objectFound = true;
         }
     }
 
@@ -107,6 +107,15 @@ public class SimpleTouchManager : MonoBehaviour, ITouchController
 
 
 
+    }
+
+    public void pinch_ended() {
+        IInteractable interactable = null;
+        if(selectedObject!= null) {
+            interactable = selectedObject.GetComponent<IInteractable>();
+
+            interactable.pinch_ended();
+        }
     }
 
 }
