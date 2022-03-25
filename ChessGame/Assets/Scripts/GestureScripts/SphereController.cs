@@ -29,11 +29,12 @@ public class SphereController : InteractableObject, IInteractable
 
         if (drag_started)
         {
-            if (Physics.Raycast(our_ray, out hit_info, Mathf.Infinity, LayerMask.GetMask("Plane")))
+            if (Physics.Raycast(our_ray, out hit_info, Mathf.Infinity, LayerMask.GetMask("Water")))
             {
-                if (hit_info.transform.CompareTag("Plano"))
+                if (hit_info.transform.CompareTag("Finish"))
                 {
                     transform.position = our_ray.GetPoint(hit_info.distance);
+                    transform.position += new Vector3(0f, 0.5f, 0f);
                 }
             }
             else

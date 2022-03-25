@@ -57,7 +57,7 @@ public class SimpleTouchManager : MonoBehaviour, ITouchController
             print("Object not Found");
         }
     }
-    public void findInteractableObject(Vector2 position)
+    public bool findInteractableObject(Vector2 position)
     {
         Ray our_ray = Camera.main.ScreenPointToRay(position);
 
@@ -75,8 +75,9 @@ public class SimpleTouchManager : MonoBehaviour, ITouchController
         }
         else
         {
-            objectFound = true;
+            objectFound = false;
         }
+        return objectFound;
     }
 
 
@@ -109,9 +110,11 @@ public class SimpleTouchManager : MonoBehaviour, ITouchController
 
     }
 
-    public void pinch_ended() {
+    public void pinch_ended()
+    {
         IInteractable interactable = null;
-        if(selectedObject!= null) {
+        if (selectedObject != null)
+        {
             interactable = selectedObject.GetComponent<IInteractable>();
 
             interactable.pinch_ended();

@@ -13,5 +13,5 @@ public interface ITouchController
 
     public void pinch_ended();
 
-    public void findInteractableObject(Vector2 position);
+    public bool findInteractableObject(Vector2 position);
 }

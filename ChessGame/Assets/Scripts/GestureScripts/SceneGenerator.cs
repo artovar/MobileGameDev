@@ -40,8 +40,8 @@ public class SceneGenerator : MonoBehaviour
 
 
         plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
-        plane.layer = LayerMask.NameToLayer("Plane");
-        plane.tag = "Plano";
+        plane.layer = LayerMask.NameToLayer("Water");
+        plane.tag = "Finish";
         plane.transform.position = new Vector3(0f, -3f, -4f);
         plane.transform.localScale = new Vector3(1f, 1f, 2f);
 
@@ -58,7 +58,7 @@ public class SceneGenerator : MonoBehaviour
         sphere.AddComponent<SphereController>();
 
         capsule = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-        capsule.transform.position = new Vector3(2f, 1f, 0f);
+        capsule.transform.position = new Vector3(2f, 1f, 10f);
         capsule.AddComponent<CapsuleController>();
 
         cyllinder = GameObject.CreatePrimitive(PrimitiveType.Cylinder);

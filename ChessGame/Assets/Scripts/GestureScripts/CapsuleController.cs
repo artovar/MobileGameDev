@@ -15,12 +15,12 @@ public class CapsuleController : InteractableObject, IInteractable
 
         plane.GetComponent<MeshRenderer>().enabled = false;
         plane.GetComponent<Collider>().enabled = false;
-        plane.tag = "Plano";
+        plane.tag = "Player";
         plane.layer = 4;
 
         plane.transform.position = transform.position;
         plane.transform.localScale = transform.localScale * 10;
-        plane.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
+        plane.transform.rotation = Quaternion.Euler(-45f, 0f, 0f);
 
     }
 
@@ -48,7 +48,7 @@ public class CapsuleController : InteractableObject, IInteractable
 
         if (Physics.Raycast(our_ray, out hit_info))
         {
-            if (hit_info.transform.CompareTag("Plano"))
+            if (hit_info.transform.CompareTag("Player"))
             {
                 transform.position = our_ray.GetPoint(hit_info.distance);
             }

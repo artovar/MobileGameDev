@@ -79,7 +79,7 @@ public class GestureIdentifierScript : MonoBehaviour
                     second_has_moved = true;
                     foreach (ITouchController manager in managers)
                     {
-                        manager.findInteractableObject(second_touch.position);
+                        //manager.findInteractableObject(second_touch.position);
                     }
                     break;
 
